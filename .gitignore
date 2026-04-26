@@ -4,6 +4,36 @@
 __pycache__/
 .idea/
 .vscode/
+*.pyc
+
+# Test output files
+*.mp3
+*.wav
+*.bin
+*.log
+*.pid
+test_*.mp3
+test_*.wav
+client_*.mp3
+client_*.wav
+playful_*.mp3
+playful_*.wav
+trener_*.mp3
+trener_*.wav
+streaming_*.bin
+
+# Temporary files
+/tmp/
+server.log
+server.pid
+nohup.out
+
+# Characters directory (voice references)
+characters/
+
+# Request files
+request.json
+/tmp/*.json/
 
 # Environments.
 .venv*/
