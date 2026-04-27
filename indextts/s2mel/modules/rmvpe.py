@@ -486,7 +486,11 @@ class RMVPE:
         self.resample_kernel = {}
         self.is_half = is_half
         if device is None:
-            device = "cuda:0" if torch.cuda.is_available() else "cpu"
+            if torch.cuda.is_available():
+                gpu_id = int(os.environ.get("TTS_GPU_ID", "0"))
+                device = f"cuda:{gpu_id}"
+            else:
+                device = "cpu"
         self.device = device
         self.mel_extractor = MelSpectrogram(
             is_half, 128, 16000, 1024, 160, None, 30, 8000
@@ -501,7 +505,8 @@ class RMVPE:
             self.model = ort_session
         else:
             if str(self.device) == "cuda":
-                self.device = torch.device("cuda:0")
+                gpu_id = int(os.environ.get("TTS_GPU_ID", "0"))
+                self.device = torch.device(f"cuda:{gpu_id}")
 
             def get_default_model():
                 model = E2E(4, 1, (2, 2))

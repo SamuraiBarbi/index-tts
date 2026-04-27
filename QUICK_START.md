@@ -45,7 +45,7 @@ You should see:
 ╚══════════════════════════════════════════════════════════════╝
 
 Starting server on 0.0.0.0:8000
-API Documentation: http://localhost:8000/docs
+API Documentation: http://localhost:8889/docs
 ```
 
 ### Step 5: Test the API
@@ -54,10 +54,10 @@ Open a new terminal and run:
 
 ```bash
 # Health check
-curl http://localhost:8000/health
+curl http://localhost:8889/health
 
 # Generate speech
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -86,7 +86,7 @@ mpg123 test.mp3  # or: afplay test.mp3 on macOS
 ✅ **Progressive Streaming** - Real-time sentence-by-sentence generation
 ✅ **Base64 Support** - Send audio data directly in requests
 ✅ **Multiple Formats** - MP3, WAV, OGG output
-✅ **Interactive Docs** - Swagger UI at http://localhost:8000/docs
+✅ **Interactive Docs** - Swagger UI at http://localhost:8889/docs
 
 ## 🔧 Common Commands
 
@@ -192,6 +192,6 @@ Once the conda environment finishes creating:
 1. Activate: `conda activate indextts2-api`
 2. Setup: `./setup_api.sh`
 3. Start: `python api_run.py`
-4. Test: Visit `http://localhost:8000/docs`
+4. Test: Visit `http://localhost:8889/docs`
 
 Enjoy your IndexTTS2 API! 🎊

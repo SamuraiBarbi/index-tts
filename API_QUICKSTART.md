@@ -38,7 +38,7 @@ cp examples/voice_07.wav characters/narrator.wav
 python api_run.py
 ```
 
-The server will start on `http://localhost:8000`
+The server will start on `http://localhost:8889`
 
 ### 4. Test the API
 
@@ -54,7 +54,7 @@ python api_client_example.py \
 **Option B: Using curl**
 
 ```bash
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -68,7 +68,7 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
 
 **Option C: Using the interactive API docs**
 
-Visit `http://localhost:8000/docs` in your browser for an interactive API interface.
+Visit `http://localhost:8889/docs` in your browser for an interactive API interface.
 
 ## 📖 Common Use Cases
 
@@ -189,7 +189,7 @@ For complete API documentation, see [`API_README.md`](API_README.md)
 
 ## 🔗 Next Steps
 
-- Explore the interactive API docs at `http://localhost:8000/docs`
+- Explore the interactive API docs at `http://localhost:8889/docs`
 - Read the full API documentation in `API_README.md`
 - Check out emotion control examples in the main README
 - Integrate the API into your applications using the provided examples

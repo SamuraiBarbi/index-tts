@@ -31,7 +31,7 @@ with open('/tmp/test_request.json', 'w') as f:
 PYTHON_EOF
 
 echo "🚀 Sending request (WAV format, no streaming)..."
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d @/tmp/test_request.json \

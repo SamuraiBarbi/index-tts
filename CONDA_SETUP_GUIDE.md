@@ -303,7 +303,7 @@ After environment setup:
    ```
 5. 🧪 Test the API:
    ```bash
-   curl http://localhost:8000/health
+   curl http://localhost:8889/health
    ```
 
 ## Summary

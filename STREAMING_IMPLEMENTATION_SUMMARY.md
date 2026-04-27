@@ -80,7 +80,7 @@ import requests
 import json
 
 response = requests.post(
-    'http://localhost:8000/v1/audio/speech',
+    'http://localhost:8889/v1/audio/speech',
     headers={'Authorization': 'Bearer test_token'},
     json={
         'input': 'Hello world. This is streaming. It works!',

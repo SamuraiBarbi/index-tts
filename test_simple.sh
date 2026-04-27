@@ -6,12 +6,12 @@ echo ""
 
 # Test 1: Health Check
 echo "Test 1: Health Check"
-curl -s http://localhost:8000/health | jq .
+curl -s http://localhost:8889/health | jq .
 echo ""
 
 # Test 2: Simple Speech Generation
 echo "Test 2: Generating speech..."
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{

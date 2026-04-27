@@ -33,13 +33,22 @@ class TTSService:
         if device_env:
             device = device_env
         
+        # Enable CUDA kernel for significant performance boost on NVIDIA GPUs
+        use_cuda_kernel = os.environ.get("TTS_CUDA_KERNEL", "1") == "1"
+        
+        # Enable Flash Attention 2 + optimized KV-cache for major speedup
+        use_accel = os.environ.get("TTS_USE_ACCEL", "1") == "1"
+        
         self.tts = IndexTTS2(
             model_dir=model_dir,
             cfg_path=cfg_path,
             use_fp16=use_fp16,
-            use_cuda_kernel=False,
+            use_cuda_kernel=use_cuda_kernel,  # Enable optimized CUDA operations
+            use_accel=use_accel,  # Enable Flash Attention 2 + paged KV-cache
             use_deepspeed=False
         )
+        
+        logger.info(f"Performance settings: FP16={use_fp16}, CUDA_kernel={use_cuda_kernel}, Flash_Attn={use_accel}")
         self.voices_dir = "characters"
         os.makedirs(self.voices_dir, exist_ok=True)
         logger.info(f"Voice directory: {self.voices_dir}")

@@ -46,7 +46,9 @@ def main():
 
     if args.device is None:
         if torch.cuda.is_available():
-            args.device = "cuda:0"
+            # Use GPU specified by TTS_GPU_ID environment variable, default to 0
+            gpu_id = int(os.environ.get("TTS_GPU_ID", "0"))
+            args.device = f"cuda:{gpu_id}"
         elif hasattr(torch, "xpu") and torch.xpu.is_available():
             args.device = "xpu"
         elif hasattr(torch, "mps") and torch.mps.is_available():

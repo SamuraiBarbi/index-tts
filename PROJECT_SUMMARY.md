@@ -100,7 +100,7 @@ python api_run.py
 
 ```bash
 # Simple generation
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{

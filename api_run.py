@@ -5,7 +5,7 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description="Run the IndexTTS2 API server")
     parser.add_argument("--host", type=str, default="0.0.0.0", help="Host to bind to")
-    parser.add_argument("--port", type=int, default=8000, help="Port to bind to")
+    parser.add_argument("--port", type=int, default=8889, help="Port to bind to")
     parser.add_argument("--reload", action="store_true", help="Enable auto-reload for development")
     parser.add_argument("--log-level", type=str, default="info", help="Log level (debug, info, warning, error)")
     parser.add_argument("--no-fp16", action="store_true", help="Disable FP16 precision")

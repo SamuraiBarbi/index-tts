@@ -71,7 +71,7 @@ with open('my_voice.wav', 'rb') as f:
 
 # Make API request
 response = requests.post(
-    'http://localhost:8000/v1/audio/speech',
+    'http://localhost:8889/v1/audio/speech',
     headers={
         'Authorization': 'Bearer test_token',
         'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ const fs = require('fs');
 const voiceData = fs.readFileSync('my_voice.wav').toString('base64');
 
 // Make API request
-fetch('http://localhost:8000/v1/audio/speech', {
+fetch('http://localhost:8889/v1/audio/speech', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer test_token',
@@ -124,7 +124,7 @@ fetch('http://localhost:8000/v1/audio/speech', {
 VOICE_BASE64=$(base64 -w 0 my_voice.wav)
 
 # Make the API request
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d "{
@@ -152,7 +152,7 @@ with open('happy_emotion.wav', 'rb') as f:
 
 # Make API request with both
 response = requests.post(
-    'http://localhost:8000/v1/audio/speech',
+    'http://localhost:8889/v1/audio/speech',
     headers={
         'Authorization': 'Bearer test_token',
         'Content-Type': 'application/json'
@@ -176,7 +176,7 @@ You can mix file-based and base64 references:
 ```python
 # Use file for voice, base64 for emotion
 response = requests.post(
-    'http://localhost:8000/v1/audio/speech',
+    'http://localhost:8889/v1/audio/speech',
     headers={
         'Authorization': 'Bearer test_token',
         'Content-Type': 'application/json'
@@ -325,7 +325,7 @@ Base64 encoding increases data size by ~33%. For example:
             const base64 = e.target.result.split(',')[1];
             
             // Call API
-            const response = await fetch('http://localhost:8000/v1/audio/speech', {
+            const response = await fetch('http://localhost:8889/v1/audio/speech', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer test_token',

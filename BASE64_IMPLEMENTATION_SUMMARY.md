@@ -46,7 +46,7 @@ with open('my_voice.wav', 'rb') as f:
 
 # Make API request
 response = requests.post(
-    'http://localhost:8000/v1/audio/speech',
+    'http://localhost:8889/v1/audio/speech',
     headers={
         'Authorization': 'Bearer test_token',
         'Content-Type': 'application/json'
@@ -201,7 +201,7 @@ python api_client_base64_example.py \
 VOICE_B64=$(base64 -w 0 examples/voice_01.wav)
 
 # Make request
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d "{

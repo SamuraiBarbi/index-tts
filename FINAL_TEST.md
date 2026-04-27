@@ -22,7 +22,7 @@ python api_run.py
 ### 2. Test WAV Generation (Already Working)
 
 ```bash
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{"input":"Hello world","voice":"alex","response_format":"wav"}' \
@@ -32,7 +32,7 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
 ### 3. Test MP3 Generation (Should Work Now)
 
 ```bash
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{"input":"Hello world","voice":"alex","response_format":"mp3"}' \

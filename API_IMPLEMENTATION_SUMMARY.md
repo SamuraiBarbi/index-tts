@@ -96,7 +96,7 @@ python api_client_example.py \
   --output test.mp3
 
 # Using curl
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{"model":"IndexTTS2","input":"Hello!","voice":"alex"}' \
@@ -199,7 +199,7 @@ Response (MP3/WAV/OGG)
 ### Manual Testing
 ```bash
 # Health check
-curl http://localhost:8000/health
+curl http://localhost:8889/health
 
 # Basic generation
 python api_client_example.py --text "Test" --voice alex --output test.mp3
@@ -213,7 +213,7 @@ python api_client_example.py \
 ```
 
 ### API Documentation
-Visit `http://localhost:8000/docs` for interactive testing
+Visit `http://localhost:8889/docs` for interactive testing
 
 ## 📝 Configuration
 
@@ -254,7 +254,7 @@ The API implementation:
 - **Quick Start**: `API_QUICKSTART.md`
 - **Full Documentation**: `API_README.md`
 - **Implementation Details**: This file
-- **Interactive Docs**: `http://localhost:8000/docs`
+- **Interactive Docs**: `http://localhost:8889/docs`
 
 ## 🎓 Based On
 

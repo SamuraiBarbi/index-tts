@@ -451,7 +451,9 @@ def load_nnvocoder(
         accelerator.load_state(checkpoint_path)
 
     if torch.cuda.is_available():
-        model = model.cuda()
+        import os
+        gpu_id = int(os.environ.get("TTS_GPU_ID", "0"))
+        model = model.to(f"cuda:{gpu_id}")
 
     model = model.eval()
     return model

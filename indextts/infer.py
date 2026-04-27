@@ -42,7 +42,9 @@ class IndexTTS:
             self.use_fp16 = False if device == "cpu" else use_fp16
             self.use_cuda_kernel = use_cuda_kernel is not None and use_cuda_kernel and device.startswith("cuda")
         elif torch.cuda.is_available():
-            self.device = "cuda:0"
+            # Use GPU specified by TTS_GPU_ID environment variable, default to 0
+            gpu_id = int(os.environ.get("TTS_GPU_ID", "0"))
+            self.device = f"cuda:{gpu_id}"
             self.use_fp16 = use_fp16
             self.use_cuda_kernel = use_cuda_kernel is None or use_cuda_kernel
         elif hasattr(torch, "xpu") and torch.xpu.is_available():

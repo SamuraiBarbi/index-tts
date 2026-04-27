@@ -14,7 +14,14 @@ from .models import SynthesizerTrn
 class OpenVoiceBaseClass(object):
     def __init__(self, 
                 config_path, 
-                device='cuda:0'):
+                device=None):
+        if device is None:
+            if torch.cuda.is_available():
+                import os
+                gpu_id = int(os.environ.get("TTS_GPU_ID", "0"))
+                device = f"cuda:{gpu_id}"
+            else:
+                device = "cpu"
         if 'cuda' in device:
             assert torch.cuda.is_available()
 

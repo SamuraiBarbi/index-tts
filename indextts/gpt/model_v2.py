@@ -412,7 +412,7 @@ class UnifiedVoice(nn.Module):
         self.use_accel = use_accel
         self.accel_engine = None  # Will be initialized in post_init_gpt2_config
 
-    def post_init_gpt2_config(self, use_deepspeed=False, kv_cache=False, half=False):
+    def post_init_gpt2_config(self, use_deepspeed=False, kv_cache=False, half=False, device=None):
         seq_length = self.max_mel_tokens + self.max_text_tokens + 2
         gpt_config = GPT2Config(
             vocab_size=self.number_mel_codes,
@@ -438,10 +438,14 @@ class UnifiedVoice(nn.Module):
             accel_gpt = GPT2AccelModel(gpt_config)
             accel_gpt.load_state_dict(self.gpt.state_dict(), strict=False)
 
-            if half:
-                accel_gpt = accel_gpt.half().cuda()
+            # Move to the correct device
+            if device is not None:
+                accel_gpt = accel_gpt.to(device)
             else:
                 accel_gpt = accel_gpt.cuda()
+            
+            if half:
+                accel_gpt = accel_gpt.half()
             accel_gpt.eval()
 
             lm_head_with_norm = nn.Sequential(self.final_norm, self.mel_head)

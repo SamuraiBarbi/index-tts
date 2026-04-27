@@ -86,8 +86,8 @@ Model directory: checkpoints
 FP16: Enabled
 Device: Auto
 
-API Documentation: http://localhost:8000/docs
-Health Check: http://localhost:8000/health
+API Documentation: http://localhost:8889/docs
+Health Check: http://localhost:8889/health
 
 Press CTRL+C to stop the server
 ```
@@ -99,7 +99,7 @@ Press CTRL+C to stop the server
 Open a new terminal and test the health endpoint:
 
 ```bash
-curl http://localhost:8000/health
+curl http://localhost:8889/health
 ```
 
 Expected response:
@@ -110,7 +110,7 @@ Expected response:
 ### Test 2: Basic Speech Generation
 
 ```bash
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -152,7 +152,7 @@ python api_client_streaming_example.py \
 ### Test 6: Emotion Control
 
 ```bash
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -171,7 +171,7 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
 Open your browser and visit:
 
 ```
-http://localhost:8000/docs
+http://localhost:8889/docs
 ```
 
 This provides an interactive Swagger UI where you can:
@@ -268,7 +268,7 @@ echo "===================================="
 
 # Test 1: Health Check
 echo "Test 1: Health Check"
-curl -s http://localhost:8000/health | jq .
+curl -s http://localhost:8889/health | jq .
 echo ""
 
 # Test 2: Basic Generation
@@ -340,7 +340,7 @@ chmod +x run_tests.sh
 ### Test Response Time
 
 ```bash
-time curl -X POST "http://localhost:8000/v1/audio/speech" \
+time curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -360,7 +360,7 @@ sudo apt install apache2-utils
 # Run load test (10 requests, 2 concurrent)
 ab -n 10 -c 2 -p request.json -T application/json \
   -H "Authorization: Bearer test_token" \
-  http://localhost:8000/v1/audio/speech
+  http://localhost:8889/v1/audio/speech
 ```
 
 ## Development Mode

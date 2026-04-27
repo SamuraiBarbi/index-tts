@@ -18,7 +18,7 @@ FAILED=0
 # Test 1: Health Check
 echo "Test 1: Health Check"
 echo "--------------------"
-RESPONSE=$(curl -s http://localhost:8000/health)
+RESPONSE=$(curl -s http://localhost:8889/health)
 if echo "$RESPONSE" | grep -q '"status":"ok"'; then
     echo -e "${GREEN}✅ PASSED${NC} - Health check successful"
     echo "$RESPONSE" | jq .
@@ -34,7 +34,7 @@ echo ""
 echo "Test 2: WAV Generation"
 echo "----------------------"
 HTTP_CODE=$(curl -s -o test_wav.wav -w "%{http_code}" \
-  -X POST "http://localhost:8000/v1/audio/speech" \
+  -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{"input":"Hello world, this is a WAV test.","voice":"alex","response_format":"wav"}')
@@ -54,7 +54,7 @@ echo ""
 echo "Test 3: MP3 Generation"
 echo "----------------------"
 HTTP_CODE=$(curl -s -o test_mp3.mp3 -w "%{http_code}" \
-  -X POST "http://localhost:8000/v1/audio/speech" \
+  -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{"input":"Hello world, this is an MP3 test.","voice":"alex","response_format":"mp3"}')

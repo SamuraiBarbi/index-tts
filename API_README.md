@@ -119,9 +119,9 @@ Available options:
 ### API Documentation
 
 Once the server is running, visit:
-- **Swagger UI**: `http://localhost:8000/docs`
-- **ReDoc**: `http://localhost:8000/redoc`
-- **Health Check**: `http://localhost:8000/health`
+- **Swagger UI**: `http://localhost:8889/docs`
+- **ReDoc**: `http://localhost:8889/redoc`
+- **Health Check**: `http://localhost:8889/health`
 
 ### Endpoint: Generate Speech
 
@@ -247,7 +247,7 @@ python api_client_example.py \
 
 **Basic request:**
 ```bash
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -261,7 +261,7 @@ curl -X POST "http://localhost:8000/v1/audio/speech" \
 
 **With emotion control:**
 ```bash
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -302,7 +302,7 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
 - Ensure model files are in `checkpoints/` directory
 
 ### API Connection Issues
-- Check server is running: `curl http://localhost:8000/health`
+- Check server is running: `curl http://localhost:8889/health`
 - Verify firewall settings
 - Ensure correct host/port configuration
 - Check authorization token is included

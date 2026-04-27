@@ -56,7 +56,9 @@ class IndexTTS2:
             self.use_fp16 = False if device == "cpu" else use_fp16
             self.use_cuda_kernel = use_cuda_kernel is not None and use_cuda_kernel and device.startswith("cuda")
         elif torch.cuda.is_available():
-            self.device = "cuda:0"
+            # Use GPU 1 (RTX 3090) if available, otherwise GPU 0
+            gpu_id = int(os.environ.get("TTS_GPU_ID", "0"))
+            self.device = f"cuda:{gpu_id}"
             self.use_fp16 = use_fp16
             self.use_cuda_kernel = use_cuda_kernel is None or use_cuda_kernel
         elif hasattr(torch, "xpu") and torch.xpu.is_available():
@@ -80,7 +82,7 @@ class IndexTTS2:
         self.use_accel = use_accel
         self.use_torch_compile = use_torch_compile
 
-        self.qwen_emo = QwenEmotion(os.path.join(self.model_dir, self.cfg.qwen_emo_path))
+        self.qwen_emo = QwenEmotion(os.path.join(self.model_dir, self.cfg.qwen_emo_path), device=self.device)
 
         self.gpt = UnifiedVoice(**self.cfg.gpt, use_accel=self.use_accel)
         self.gpt_path = os.path.join(self.model_dir, self.cfg.gpt_checkpoint)
@@ -99,7 +101,7 @@ class IndexTTS2:
                 use_deepspeed = False
                 print(f">> Failed to load DeepSpeed. Falling back to normal inference. Error: {e}")
 
-        self.gpt.post_init_gpt2_config(use_deepspeed=use_deepspeed, kv_cache=True, half=self.use_fp16)
+        self.gpt.post_init_gpt2_config(use_deepspeed=use_deepspeed, kv_cache=True, half=self.use_fp16, device=self.device)
 
         if self.use_cuda_kernel:
             # preload the CUDA kernel for BigVGAN
@@ -717,14 +719,15 @@ def find_most_similar_cosine(query_vector, matrix):
     return most_similar_index
 
 class QwenEmotion:
-    def __init__(self, model_dir):
+    def __init__(self, model_dir, device="cuda:0"):
         self.model_dir = model_dir
+        self.device = device
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir)
         self.model = AutoModelForCausalLM.from_pretrained(
             self.model_dir,
             torch_dtype="float16",  # "auto"
-            device_map="auto"
-        )
+            device_map=None
+        ).to(device)
         self.prompt = "文本情感分类"
         self.cn_key_to_en = {
             "高兴": "happy",

@@ -73,7 +73,7 @@ import requests
 import json
 
 response = requests.post(
-    'http://localhost:8000/v1/audio/speech',
+    'http://localhost:8889/v1/audio/speech',
     headers={'Authorization': 'Bearer test_token'},
     json={
         'input': 'Hello world. This is streaming. It works great!',
@@ -112,7 +112,7 @@ python api_client_streaming_example.py \
 ### JavaScript/Node.js
 
 ```javascript
-const response = await fetch('http://localhost:8000/v1/audio/speech', {
+const response = await fetch('http://localhost:8889/v1/audio/speech', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer test_token',
@@ -150,7 +150,7 @@ while (true) {
 ### curl (Save chunks)
 
 ```bash
-curl -X POST "http://localhost:8000/v1/audio/speech" \
+curl -X POST "http://localhost:8889/v1/audio/speech" \
   -H "Authorization: Bearer test_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -258,7 +258,7 @@ p.terminate()
         const text = document.getElementById('text').value;
         const status = document.getElementById('status');
         
-        const response = await fetch('http://localhost:8000/v1/audio/speech', {
+        const response = await fetch('http://localhost:8889/v1/audio/speech', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer test_token',

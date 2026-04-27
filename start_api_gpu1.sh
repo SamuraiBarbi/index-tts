@@ -16,4 +16,4 @@ echo "Using GPU 1 (RTX 3090)"
 echo ""
 
 # Start the API server
-python api_run.py --device cuda:0
+python api_run.py --port 8889 --device cuda:0

@@ -19,7 +19,7 @@ def encode_audio_file(file_path):
 
 def main():
     parser = argparse.ArgumentParser(description="Test the IndexTTS2 API with base64 encoded audio")
-    parser.add_argument("--url", type=str, default="http://localhost:8000/v1/audio/speech", 
+    parser.add_argument("--url", type=str, default="http://localhost:8889/v1/audio/speech", 
                         help="URL of the IndexTTS2 API")
     parser.add_argument("--token", type=str, default="test_token", help="API token")
     parser.add_argument("--text", type=str, required=True, help="Text to synthesize")
